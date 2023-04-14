@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Column and Row span</title>
+    <link rel="icon" type="icon" href="grocery.jpg">
+    <style>
+        table,td,tr,th{
+            border: 1px solid;
+            border-collapse:collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <caption>Row, Column Span</caption>
+        <colgroup>
+            <col span="" >
+            <col span="" style="background-color: rgb(89, 97, 97);">
+            <col span="" style="background-color: rgb(193, 232, 232);">
+            <col span="" style="background-color: rgb(57, 104, 104);">
+        </colgroup>
+        
+        <tr>
+            <td colspan="2">abcd</td>           
+            <td>abcd</td>
+            <td>abcd</td>
+        </tr>
+
+        <tr>
+            <td>abcd</td>
+            <td>abcd</td>
+            <td colspan="2" rowspan="2">abcd</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">abcd</td>
+           
+        </tr>
+
+        <tr>
+            <td>abcd</td>
+            <td colspan="2">abcd</td>
+            
+            <td>abcd</td>
+        </tr>
+
+        
+    </table>
+</body>
+</html>
