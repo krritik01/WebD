@@ -1,50 +1,47 @@
-let isDOBOpen = false;
-let dateOfBirth;
-const settingCogEl = document.getElementById("settingIcon");
-const settingContentEl = document.getElementById("settingContent");
-const initialTextEl = document.getElementById("initialText");
-const afterDOBBtnTxtEl = document.getElementById("afterDOBBtnTxt");
-const dobButtonEl = document.getElementById("dobButton");
-const dobInputEl = document.getElementById("dobInput");
+const notesContainer = document.querySelector(".notes-container");
+const createBtn = document.querySelector(".btn");
 
+let notes=document.querySelectorAll(".input-box");
 
-const yearEl = document.getElementById("year");
-const monthEl = document.getElementById("month");
-const dayEl = document.getElementById("day");
-const hoursEl = document.getElementById("hours");
-const minutesEl = document.getElementById("minutes");
-const secondEl = document.getElementById("second");
+function showNotes(){
+    notesContainer.innerHTML = localStorage.getItem("notes");
+}
+showNotes();
 
-const toggleDateOfBirthSelector = () => {
-    if (isDOBOpen) {
-        settingContentEl.classList.add('hide');
-    } else {
-        settingContentEl.classList.remove('hide');
-    }
-    isDOBOpen = !isDOBOpen;
-    console.log("Toggle", isDOBOpen);
-};
-
-const setDOBHandler = () => {
-    dateOfBirth = dobInputEl.value;
-    if (dateOfBirth) {
-        initialTextEl.classList.add("hide");
-        afterDOBBtnTxtEl.classList.remove("hide");
-    } else {
-        afterDOBBtnTxtEl.classList.add("hide");
-        initialTextEl.classList.remove("hide");
-    }
-};
-
-setDOBHandler();
-
-const updateAge = () => {
-    const currentDate = new Date();
+function updateStorage(){
+    localStorage.setItem("notes", notesContainer.innerHTML);
 }
 
 
+createBtn.addEventListener("click",()=>{
+    let inputBox = document.createElement("p");
+    let img = document.createElement("img");
+    inputBox.className="input-box";
+    inputBox.setAttribute("contenteditable", "true");
+    img.src="assets/icons8-delete-60.png";
+    notesContainer.appendChild(inputBox).appendChild(img);
+    
+})
 
+notesContainer.addEventListener("click",function(e){
+    if(e.target.tagName === "IMG"){
+        e.target.parentElement.remove();
+        updateStorage();
+    }
+    else if(e.target.tagName==="P"){
+        notes = document.querySelectorAll(".input-box");
+        notes.forEach(nt=>{
+            nt.onkeyup=function(){
+                updateStorage();
+            }
+        })
+    }
+})
 
-settingCogEl.addEventListener("click", toggleDateOfBirthSelector);
+document.addEventListener("keydown", event=>{
+    if(event.key==="Enter"){
+        document.execCommand("insertLineBreak");
+        event.preventDefault();
+    }
+})
 
-dobButtonEl.addEventListener("click", setDOBHandler);
