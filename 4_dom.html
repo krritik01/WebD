@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Learning</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    <ul  class="language">
+            <li>Javascript</li>
+    </ul>
+</body>
+<script>
+    function addLanguage(langName){
+        const li=document.createElement("li");
+        li.innerHTML=`${langName}`;
+        document.querySelector('.language').appendChild(li);
+    }
+    addLanguage("python")
+    addLanguage("Solidity")
+
+
+//Optimise approach for this 
+function addLang(langName){
+    const lang=document.createElement('li');
+    lang.appendChild(document.createTextNode(langName));
+    document.querySelector('.language').appendChild(lang);
+}
+addLang("Golang")
+addLang("C++")
+addLang("Java")
+
+//How to edit value
+const secLang = document.querySelector("li:nth-child(2)")
+// console.log(secLang)
+// secLang.innerHTML="Rust" //this one also works but we have also the optimise code 
+//Optimise way to do 
+const newli=document.createElement('li');
+newli.textContent="Swift";
+secLang.replaceWith(newli);
+
+//replace javascript with typescript
+const firstLang=document.querySelector("li:nth-child(1)")
+const changefirst=document.createElement('li')
+changefirst.textContent="Typescript"
+firstLang.replaceWith(changefirst)
+
+//Another method to do this is
+const firstLangg = document.querySelector("li:first-child")
+firstLangg.outerHTML="<li>Assembly</li>"
+
+
+//Here we learn how to remove element
+const lastLang=document.querySelector("li:nth-child(6)")
+lastLang.remove()
+
+</script>
+</html>
